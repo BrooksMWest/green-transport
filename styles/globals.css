@@ -4,8 +4,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -19,4 +18,20 @@ a {
 
 body {
   background-color: #88effd;
+}
+
+#faq-header {
+  margin: 5vh auto 0 auto;
+}
+
+#faq-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#faq-about {
+  margin-top: 5vh;
+  text-align: left;
+  color: green;
 }
