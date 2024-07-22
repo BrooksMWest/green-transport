@@ -24,7 +24,9 @@ body {
   margin: 5vh auto 0 auto;
 }
 
-#faq-container {
+#faq-container,
+#membership-container,
+#membership-card-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -34,4 +36,33 @@ body {
   margin-top: 5vh;
   text-align: left;
   color: green;
+}
+
+#membership-card-container {
+  margin-top: 5vh;
+}
+
+.membership-card {
+  display: flex;
+  height: 120px;
+  margin-top: 1vh;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 30px;
+  font-weight: 750;
+}
+
+.star {
+  font-size: 60px;
+}
+
+.membership-button {
+  background-color: rgb(148, 208, 179);
+  border-style: none;
+  color: black;
+  width: 200px;
+}
+
+.membership-button:hover {
+  background-color: gray;
 }
