@@ -26,7 +26,8 @@ body {
 
 #faq-container,
 #membership-container,
-#membership-card-container {
+#membership-card-container,
+#welcome-button-wrapper {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -65,4 +66,19 @@ body {
 
 .membership-button:hover {
   background-color: gray;
+}
+
+#welcome-button-wrapper {
+  margin-top: 20vh;
+  align-items: center;
+}
+
+.welcome-button {
+  width: 200px;
+  margin-top: 7px;
+  background-color: rgb(148, 208, 179);
+  border-style: none;
+  color: black;
+  font-size: 15px;
+  font-weight: 700;
 }

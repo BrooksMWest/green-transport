@@ -9,27 +9,18 @@ function Welcome() {
 
   return (
     <>
-      <div className="text-center my-4">
-        <div className="d-flex flex-wrap" style={{ position: 'absolute', top: 100, right: 20 }}>
-          <Image
-            src={user.photoURL}
-            alt="User Avatar"
-            roundedCircle
-            style={{ width: 100, height: 100 }}
-          />
-          <div>
-            <h1>Welcome, {user.displayName} {user.photURL}</h1>
-          </div>
-        </div>
-        <div>
-          <Button type="button" size="lg" className="copy-btn" onClick={StartRide}>
-            Start Ride
-          </Button>
-          <Button type="button" size="lg" className="copy-btn" onClick={RideHistory}>
-            Ride History
-          </Button>
+      <Image src={user.photoURL} alt="User-Avatar" roundedCircle style={{ width: 100, height: 100 }} />
+      <h1>
+        Welcome, {user.displayName} {user.photURL}
+      </h1>
 
-        </div>
+      <div id="welcome-button-wrapper">
+        <Button type="button" size="lg" className="copy-btn welcome-button" onClick={StartRide}>
+          START RIDE
+        </Button>
+        <Button type="button" size="lg" className="copy-btn welcome-button" onClick={RideHistory}>
+          RIDE HISTORY
+        </Button>
       </div>
     </>
   );
