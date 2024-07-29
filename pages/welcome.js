@@ -15,10 +15,10 @@ function Welcome() {
       </h1>
 
       <div id="welcome-button-wrapper">
-        <Button type="button" size="lg" className="copy-btn welcome-button" onClick={StartRide}>
+        <Button type="button" size="lg" className="copy-btn welcome-button" onClick={StartRide} href="/startRide">
           START RIDE
         </Button>
-        <Button type="button" size="lg" className="copy-btn welcome-button" onClick={RideHistory}>
+        <Button type="button" size="lg" className="copy-btn welcome-button" onClick={RideHistory} href="/rideHistory">
           RIDE HISTORY
         </Button>
       </div>
