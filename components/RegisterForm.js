@@ -47,7 +47,7 @@ function RegisterForm({ user, updateUser }) {
 
 RegisterForm.propTypes = {
   user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     uid: PropTypes.string.isRequired,
   }).isRequired,
   updateUser: PropTypes.func.isRequired,
