@@ -38,6 +38,17 @@ function RegisterForm({ user, updateUser }) {
           required
         />
       </Form.Group>
+      <Form.Group className="mb-4" controlId="exampleForm.ControlTextarea3">
+        <Form.Label>Enter Email</Form.Label>
+        <Form.Control
+          type="text"
+          name="email"
+          placeholder="Enter your email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+      </Form.Group>
       <Button variant="primary" type="submit">
         Register Membership
       </Button>
