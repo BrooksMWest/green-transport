@@ -82,3 +82,8 @@ body {
   font-size: 15px;
   font-weight: 700;
 }
+
+#welcome-header {
+  text-align: right;
+  font-size: 30px;
+}

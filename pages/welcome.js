@@ -6,12 +6,11 @@ import { useAuth } from '../utils/context/authContext';
 
 function Welcome() {
   const { user } = useAuth();
-
   return (
     <>
-      <Image src={user.photoURL} alt="User-Avatar" roundedCircle style={{ width: 100, height: 100 }} />
-      <h1>
-        Welcome, {user.displayName} {user.photURL}
+      <h1 id="welcome-header">
+        <Image src={user.fbUser.photoURL} alt="User-Avatar" roundedCircle style={{ width: 60, height: 60 }} />
+        Welcome, {user.fbUser.displayName}!
       </h1>
 
       <div id="welcome-button-wrapper">
