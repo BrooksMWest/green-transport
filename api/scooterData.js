@@ -16,4 +16,17 @@ const getScooters = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default getScooters;
+const updateScooter = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/scooters/`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+export { getScooters, updateScooter };
