@@ -28,6 +28,9 @@ export default function NavBar() {
             <Link passHref href="/faq">
               <Nav.Link>faq</Nav.Link>
             </Link>
+            <Link passHref href="/modal">
+              <Nav.Link>Modal Test</Nav.Link>
+            </Link>
             <Button variant="danger" onClick={signOut}>
               Sign Out
             </Button>
