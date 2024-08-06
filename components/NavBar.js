@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 // prettier-ignore
 import {
-  Navbar, Container, Nav, Button,
+  Navbar, Container, Nav, Button, Image,
 } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 
@@ -13,7 +13,9 @@ export default function NavBar() {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Link passHref href="/">
-          <Navbar.Brand>changetologo</Navbar.Brand>
+          <Navbar.Brand>
+            <Image src="/logo.png" height={70} />
+          </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

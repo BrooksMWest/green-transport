@@ -20,7 +20,7 @@ body {
   background-color: #88effd;
 }
 
-#faq-header {
+#faq-header, #ride-history-header {
   margin: 5vh auto 0 auto;
 }
 
@@ -86,4 +86,33 @@ body {
 #welcome-header {
   text-align: right;
   font-size: 30px;
+}
+
+#ride-history-wrapper {
+  margin-top: 5vh;
+}
+
+.ride-history-card {
+  display: flex;
+  height: 120px;
+  margin-top: 1vh;
+  align-items: center;
+  justify-content: space-around;
+  border: 2px solid black;
+}
+
+.ride-history-card div {
+  height: 70%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.ride-history-card button {
+  width: 60%;
+  margin-top: 8px;
+  line-height: 15px;
 }
