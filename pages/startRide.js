@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import ScooterPickerForm from '../components/ScooterPickerForm';
+import Timer from '../components/Timer';
 
 function StartTimer() {
   return (
@@ -10,10 +10,8 @@ function StartTimer() {
         <div>
           <ScooterPickerForm />
         </div>
-        <div id="welcome-button-wrapper">
-          <Button type="button" size="lg" className="copy-btn welcome-button" onClick={StartTimer}>
-            START
-          </Button>
+        <div>
+          <Timer />
         </div>
       </div>
     </div>
