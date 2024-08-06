@@ -31,6 +31,9 @@ export default function NavBar() {
             <Link passHref href="/modal">
               <Nav.Link>Modal Test</Nav.Link>
             </Link>
+            <Link passHref href="/scooterMaintenance">
+              <Nav.Link>Report An Issue</Nav.Link>
+            </Link>
             <Button variant="danger" onClick={signOut}>
               Sign Out
             </Button>
