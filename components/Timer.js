@@ -14,7 +14,7 @@ const Timer = () => {
     let intervalId;
     if (isRunning) {
       // setting time from 0 to 1 every milisecond using javaScript setInterval method
-      intervalId = setInterval(() => setTime(time + 1), 1000);
+      intervalId = setInterval(() => setTime((prevTime) => prevTime + 1), 1000);
     }
     return () => clearInterval(intervalId);
   }, [isRunning, time]);
@@ -25,6 +25,9 @@ const Timer = () => {
   const seconds = time % 60;
 
   const getElapsedTime = () => ({ minutes, seconds });
+
+  // this is where the ride cost is calculated
+  const calculateRideCost = () => (minutes * 0.5).toFixed(2);
 
   // method to start and stop timer
   const startAndStop = () => {
@@ -38,7 +41,9 @@ const Timer = () => {
     if (isRunning) {
       setIsrunning(false);
     }
-    setRide({ ...ride, elapsedTime: getElapsedTime() });
+    const elapsedTime = getElapsedTime();
+    const rideCost = calculateRideCost(elapsedTime.minutes + elapsedTime.seconds / 60);
+    setRide({ ...ride, elapsedTime, cost: rideCost });
   };
   // add another function to the end ride button to calculate the ride cost on the click and navigate to ride summary page.
   return (
@@ -51,7 +56,7 @@ const Timer = () => {
         <Button type="button" size="lg" className="copy-btn welcome-button" onClick={startAndStop}>
           {isRunning ? 'Stop' : 'Start'}
         </Button>
-        <Button type="button" size="lg" className="copy-btn welcome-button" onClick={endRide}>
+        <Button type="button" size="lg" className="copy-btn welcome-button" onClick={endRide} href="/rideHistory">
           End Ride
         </Button>
       </div>

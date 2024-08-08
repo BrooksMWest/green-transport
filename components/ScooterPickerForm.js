@@ -56,10 +56,10 @@ function ScooterPickerForm({ obj }) {
             {
     scooters.map((scooter) => (
       <option
-        key={scooter.id}
-        value={scooter.id}
+        key={scooter.name}
+        value={scooter.name}
       >
-        {scooter.id}
+        {scooter.name}
       </option>
     ))
   }

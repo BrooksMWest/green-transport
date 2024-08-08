@@ -3,7 +3,7 @@ import { clientCredentials } from '../utils/client';
 const endpoint = clientCredentials.databaseURL;
 
 const getScooters = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/scooters`, {
+  fetch(`${endpoint}/scooter`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ const getScooters = () => new Promise((resolve, reject) => {
 });
 
 const updateScooter = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/scooters/`, {
+  fetch(`${endpoint}/scooter/`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
