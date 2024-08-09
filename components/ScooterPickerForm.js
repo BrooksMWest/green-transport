@@ -19,7 +19,7 @@ function ScooterPickerForm({ obj }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    getScooters(user.fbUser).then(setScooters);
+    getScooters(user).then(setScooters);
 
     if (obj) setFormInput(obj);
   }, [obj, user]);
@@ -35,10 +35,10 @@ function ScooterPickerForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj) {
-      updateScooter(formInput).then(() => router.push(`/scooter/${obj}`));
+      updateScooter(formInput).then(() => router.push(`/scooters/${obj}`));
     }
   };
-
+  // console.log(scooters)
   return (
     <Form onSubmit={handleSubmit}>
       <div>
@@ -48,7 +48,7 @@ function ScooterPickerForm({ obj }) {
             name="id"
             onChange={handleChange}
             className="mb-3"
-            key={formInput.id}
+            // key={formInput.id}
             value={formInput.id}
             required
           >
@@ -59,7 +59,7 @@ function ScooterPickerForm({ obj }) {
         key={scooter.id}
         value={scooter.id}
       >
-        {scooter.id}
+        {scooter.name}
       </option>
     ))
   }

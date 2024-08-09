@@ -9,10 +9,8 @@ const getScooters = () => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => {
-      const res = response.json();
-      console.warn(res);
-    })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
