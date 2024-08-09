@@ -75,8 +75,8 @@ const Timer = ({ selectedScooter }) => {
 
 Timer.propTypes = {
   selectedScooter: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    name: PropTypes.number.isRequired,
   }).isRequired,
 };
 
