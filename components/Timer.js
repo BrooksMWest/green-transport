@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { PropTypes } from 'prop-types';
+import { useAuth } from '../utils/context/authContext';
 
 // state to store time
 const Timer = ({ selectedScooter }) => {
   const [time, setTime] = useState(0); // initializes the variable time. setTime function updates time state
+  const { user } = useAuth();
 
   // state to check wether the timer is running or not
   const [isRunning, setIsrunning] = useState(false); // default is false - timer is not running in this state
   // need to store ride data with state
-  const [ride, setRide] = useState({}); // intitalizes ride as an empty object that will hold elapsed time and cost
-
+  const [ride, setRide] = useState({
+    elapsedTime: null,
+    cost: null,
+    scooter: null,
+    userId: user,
+  }); // intitalizes ride as an empty object that will hold elapsed time and cost
   useEffect(() => {
     let intervalId;
     if (isRunning) {
