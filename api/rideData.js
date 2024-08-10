@@ -1,10 +1,9 @@
 import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
-// API CALLS NEEDED HERE WIL BE CALLS TO:
-// create a RIDE DATA IN THE DATABASE
+
 const createRide = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/rides.json`, {
+  fetch(`${endpoint}/rides`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -31,7 +30,7 @@ const getUserRides = (uid) => new Promise((resolve, reject) => {
 
 // GET A SINGLE RIDE FROM THE DATABASE
 const getSingleRide = (id) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/rides/${id}.json`, {
+  fetch(`${endpoint}/rides/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { PropTypes } from 'prop-types';
 import { useAuth } from '../utils/context/authContext';
+import { createRide } from '../api/rideData';
 
 // state to store time
 const Timer = ({ selectedScooter }) => {
+  const { user } = useAuth();
   const [time, setTime] = useState(0); // initializes the variable time. setTime function updates time state
   const { user } = useAuth();
 
@@ -48,11 +50,27 @@ const Timer = ({ selectedScooter }) => {
     if (isRunning) {
       setIsrunning(false);
     }
-    const duration = getDuration();
-    const rideCost = calculateRideCost(duration.minutes + duration.seconds / 60);
-    setRide({
-      ...ride, duration, cost: rideCost, scooter: selectedScooter,
-    });
+
+    const elapsedTime = getElapsedTime();
+    const rideCost = calculateRideCost(elapsedTime.minutes + elapsedTime.seconds / 60);
+    const newRide = {
+      cost: rideCost,
+      duration: elapsedTime.minutes,
+      scooter: selectedScooter,
+      user: user.fbUser.uid,
+    };
+
+    console.warn(newRide);
+
+    createRide(newRide)
+      .then((response) => {
+        console.warn('Ride posted successfully:', response);
+      })
+      .catch((error) => {
+        console.error('Error posting ride:', error);
+      });
+
+
   };
 
   return (
@@ -65,7 +83,7 @@ const Timer = ({ selectedScooter }) => {
         <Button type="button" size="lg" className="copy-btn welcome-button" onClick={startAndStop}>
           {isRunning ? 'Stop' : 'Start'}
         </Button>
-        <Button type="button" size="lg" className="copy-btn welcome-button" onClick={endRide} href="/rideHistory">
+        <Button type="button" size="lg" className="copy-btn welcome-button" onClick={endRide}>
           End Ride
         </Button>
       </div>
@@ -73,11 +91,21 @@ const Timer = ({ selectedScooter }) => {
   );
 };
 
+Timer.defaultProps = {
+  selectedScooter: { id: '', name: 'Unknown Scooter' },
+};
+
 Timer.propTypes = {
   selectedScooter: PropTypes.shape({
+
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }),
+
     id: PropTypes.number.isRequired,
     name: PropTypes.number.isRequired,
   }).isRequired,
+
 };
 
 export default Timer;
