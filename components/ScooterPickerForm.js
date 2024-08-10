@@ -8,8 +8,8 @@ import { getScooters, updateScooter } from '../api/scooterData';
 // TO DO: THERE WILL NEED TO BE A createRide FUNCTION THAT CREATES A RIDE. IT WILL NEED TO HAVE THE USER ID, the scooterId, the duration of the ride, and the cost. This will all be saved when the stop ride button is clicked
 
 const initialState = {
-  id: '',
-  name: '',
+  id: 0,
+  name: 0,
 };
 
 function ScooterPickerForm({ obj, setSelectedScooter }) {
@@ -30,7 +30,7 @@ function ScooterPickerForm({ obj, setSelectedScooter }) {
       ...prevState,
       [name]: value,
     }));
-    const selectedScooter = scooters.find((scooter) => scooter.id === value);
+    const selectedScooter = scooters.find((scooter) => scooter.id === Number(value));
     if (selectedScooter) {
       setSelectedScooter(selectedScooter);
     } else {
@@ -78,8 +78,8 @@ function ScooterPickerForm({ obj, setSelectedScooter }) {
 
 ScooterPickerForm.propTypes = {
   obj: PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
+    id: PropTypes.number,
+    name: PropTypes.number,
   }),
   setSelectedScooter: PropTypes.func.isRequired,
 };

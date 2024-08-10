@@ -13,7 +13,7 @@ function StartTimer() {
           <ScooterPickerForm setSelectedScooter={setSelectedScooter} />
         </div>
         <div>
-          <Timer setSelectedScooter={selectedScooter} />
+          {selectedScooter && <Timer selectedScooter={selectedScooter} />}
         </div>
       </div>
     </div>
