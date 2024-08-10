@@ -28,6 +28,17 @@ const getUserRides = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getAllRides = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/rides`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
 // GET A SINGLE RIDE FROM THE DATABASE
 const getSingleRide = (id) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/rides/${id}`, {
@@ -54,5 +65,5 @@ const deleteSingleRide = (id) => new Promise((resolve, reject) => {
 });
 
 export {
-  createRide, getUserRides, getSingleRide, deleteSingleRide,
+  createRide, getUserRides, getSingleRide, deleteSingleRide, getAllRides,
 };
