@@ -9,7 +9,13 @@ function StartTimer() {
       <div className="d-flex flex-wrap">
         <h1>start ride page</h1>
         <div>
+
           <Timer onClick={selectedScooter} />
+
+          <ScooterPickerForm setSelectedScooter={setSelectedScooter} />
+        </div>
+        <div>
+          {selectedScooter && <Timer onClick={selectedScooter} />}
         </div>
       </div>
     </div>

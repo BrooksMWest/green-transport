@@ -8,12 +8,17 @@ import { createRide } from '../api/rideData';
 const Timer = ({ selectedScooter }) => {
   const { user } = useAuth();
   const [time, setTime] = useState(0); // initializes the variable time. setTime function updates time state
+  const { user } = useAuth();
 
   // state to check wether the timer is running or not
   const [isRunning, setIsrunning] = useState(false); // default is false - timer is not running in this state
   // need to store ride data with state
-  const [ride, setRide] = useState({}); // intitalizes ride as an empty object that will hold elapsed time and cost
-
+  const [ride, setRide] = useState({
+    duration: null,
+    cost: null,
+    scooter: null,
+    userId: user,
+  }); // intitalizes ride as an empty object that will hold elapsed time and cost
   useEffect(() => {
     let intervalId;
     if (isRunning) {
@@ -28,7 +33,7 @@ const Timer = ({ selectedScooter }) => {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
 
-  const getElapsedTime = () => ({ minutes, seconds });
+  const getDuration = () => ({ minutes, seconds });
 
   // this is where the ride cost is calculated
   const calculateRideCost = () => (minutes * 0.5).toFixed(2);// multiplies the minutes * 50 cents. the toFixed part claculates the ride to 2 decimal places
@@ -36,7 +41,7 @@ const Timer = ({ selectedScooter }) => {
   // method to start and stop timer
   const startAndStop = () => {
     if (isRunning) {
-      setRide({ ...ride, elapsedTime: getElapsedTime(), scooter: selectedScooter }); // this updates the ride with elapsed time ... is the spread operator and the scooter
+      setRide({ ...ride, duration: getDuration(), scooter: selectedScooter }); // this updates the ride with elapsed time ... is the spread operator and the scooter
     }
     setIsrunning(!isRunning);
   };
@@ -45,6 +50,7 @@ const Timer = ({ selectedScooter }) => {
     if (isRunning) {
       setIsrunning(false);
     }
+
     const elapsedTime = getElapsedTime();
     const rideCost = calculateRideCost(elapsedTime.minutes + elapsedTime.seconds / 60);
     const newRide = {
@@ -63,6 +69,8 @@ const Timer = ({ selectedScooter }) => {
       .catch((error) => {
         console.error('Error posting ride:', error);
       });
+
+
   };
 
   return (
@@ -89,9 +97,15 @@ Timer.defaultProps = {
 
 Timer.propTypes = {
   selectedScooter: PropTypes.shape({
+
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }),
+
+    id: PropTypes.number.isRequired,
+    name: PropTypes.number.isRequired,
+  }).isRequired,
+
 };
 
 export default Timer;
