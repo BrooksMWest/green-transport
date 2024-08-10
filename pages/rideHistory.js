@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { getUserRides, deleteSingleRide } from '../api/rideData';
+import { getAllRides, deleteSingleRide } from '../api/rideData';
 
 function RideHistory() {
   const [rides, setRides] = useState([]);
 
   useEffect(() => {
-    getUserRides(4).then((ridesData) => {
+    getAllRides().then((ridesData) => {
       setRides(ridesData);
+    }).catch((error) => {
+      console.error('Error fetching all rides:', error);
     });
   }, []);
 
