@@ -12,7 +12,8 @@ const initialState = {
   name: 0,
 };
 
-function ScooterPickerForm({ obj, setSelectedScooter }) {
+// eslint-disable-next-line react/prop-types
+function ScooterPickerForm({ obj, setValue }) {
   const [formInput, setFormInput] = useState(initialState);
   const [scooters, setScooters] = useState([]);
   const router = useRouter();
@@ -30,12 +31,7 @@ function ScooterPickerForm({ obj, setSelectedScooter }) {
       ...prevState,
       [name]: value,
     }));
-    const selectedScooter = scooters.find((scooter) => scooter.id === Number(value));
-    if (selectedScooter) {
-      setSelectedScooter(selectedScooter);
-    } else {
-      console.warn(`scooter with id ${value} not found`);
-    }
+    setValue(value);
   };
 
   const handleSubmit = (e) => {
@@ -81,7 +77,6 @@ ScooterPickerForm.propTypes = {
     id: PropTypes.number,
     name: PropTypes.number,
   }),
-  setSelectedScooter: PropTypes.func.isRequired,
 };
 
 ScooterPickerForm.defaultProps = {

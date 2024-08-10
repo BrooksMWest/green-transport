@@ -31,7 +31,7 @@ const Timer = ({ selectedScooter }) => {
   const getElapsedTime = () => ({ minutes, seconds });
 
   // this is where the ride cost is calculated
-  const calculateRideCost = () => (minutes * 0.5).toFixed(2);// multiplies the minutes * 50 cents. the toFixed part claculates the ride to 2 decimal places
+  const calculateRideCost = (duration) => (duration * 0.5).toFixed(2);// multiplies the minutes * 50 cents. the toFixed part claculates the ride to 2 decimal places
 
   // method to start and stop timer
   const startAndStop = () => {
@@ -40,18 +40,19 @@ const Timer = ({ selectedScooter }) => {
     }
     setIsrunning(!isRunning);
   };
+  console.warn('selected scooter', selectedScooter);
 
   const endRide = () => {
     if (isRunning) {
       setIsrunning(false);
     }
     const elapsedTime = getElapsedTime();
-    const rideCost = calculateRideCost(elapsedTime.minutes + elapsedTime.seconds / 60);
+    const rideCost = calculateRideCost(elapsedTime.minutes);
     const newRide = {
-      cost: rideCost,
+      cost: Number(rideCost),
       duration: elapsedTime.minutes,
       scooter: selectedScooter,
-      user: user.fbUser.uid,
+      user: user.id,
     };
 
     console.warn(newRide);
@@ -84,13 +85,13 @@ const Timer = ({ selectedScooter }) => {
 };
 
 Timer.defaultProps = {
-  selectedScooter: { id: '', name: 'Unknown Scooter' },
+  selectedScooter: { id: 0 },
 };
 
 Timer.propTypes = {
   selectedScooter: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    name: PropTypes.number.isRequired,
   }),
 };
 

@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Timer from '../components/Timer';
+import ScooterPickerForm from '../components/ScooterPickerForm';
 
 function StartTimer() {
-  const [selectedScooter] = useState(null);
-
+  const [scooter, setScooter] = useState([]);
+  const setValue = (value) => {
+    setScooter(value);
+  };
   return (
     <div className="text-center my-4">
       <div className="d-flex flex-wrap">
         <h1>start ride page</h1>
         <div>
-          <Timer onClick={selectedScooter} />
+          <ScooterPickerForm setValue={setValue} />
+        </div>
+        <div>
+          <Timer selectedScooter={scooter} />
         </div>
       </div>
     </div>
