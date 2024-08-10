@@ -1,39 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { getUserRides, deleteSingleRide } from '../api/rideData';
 
 function RideHistory() {
+  const [rides, setRides] = useState([]);
+
+  useEffect(() => {
+    getUserRides(4).then((ridesData) => {
+      setRides(ridesData);
+    });
+  }, []);
+
+  const handleDelete = (rideId) => {
+    deleteSingleRide(rideId).then(() => {
+      setRides((prevRides) => prevRides.filter((ride) => ride.id !== rideId));
+    }).catch((error) => {
+      console.error('Error deleting ride:', error);
+    });
+  };
+
   return (
-    <div className="text-center my-4">
-      <h1 id="ride-history-header">RIDE HISTORY</h1>
-      <div id="ride-history-wrapper">
-        <div className="ride-history-card">
-          <div>DATE <br /><br /> 06/21/24 </div>
-          <div>TOTAL <br /><br /> 10:31 </div>
-          <div>COST <br /><br /> $1000 </div>
+    <div>
+      {rides.map((ride, index) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <div className="ride-history-card" key={`ride-${index}`}>
+          <div>
+            DATE <br /><br /> {ride.created_on}
+          </div>
+          <div>
+            TOTAL <br /><br /> {ride.duration}
+          </div>
+          <div>
+            COST <br /><br /> ${ride.cost}
+          </div>
           <div>
             <Button id="ride-history-details">...</Button>
-            <Button id="ride-history-delete">DELETE THIS RIDE</Button>
+            <Button
+              id="ride-history-delete"
+              onClick={() => handleDelete(ride.id)}
+            >
+              DELETE THIS RIDE
+            </Button>
           </div>
         </div>
-        <div className="ride-history-card">
-          <div>test</div>
-          <div>test1</div>
-          <div>test2</div>
-          <div>test3</div>
-        </div>
-        <div className="ride-history-card">
-          <div>test</div>
-          <div>test1</div>
-          <div>test2</div>
-          <div>test3</div>
-        </div>
-        <div className="ride-history-card">
-          <div>test</div>
-          <div>test1</div>
-          <div>test2</div>
-          <div>test3</div>
-        </div>
-      </div>
+      ))}
     </div>
   );
 }

@@ -41,4 +41,18 @@ const getSingleRide = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { createRide, getUserRides, getSingleRide };
+const deleteSingleRide = (id) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/rides/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+export {
+  createRide, getUserRides, getSingleRide, deleteSingleRide,
+};
