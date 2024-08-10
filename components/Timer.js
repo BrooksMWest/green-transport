@@ -12,7 +12,7 @@ const Timer = ({ selectedScooter }) => {
   const [isRunning, setIsrunning] = useState(false); // default is false - timer is not running in this state
   // need to store ride data with state
   const [ride, setRide] = useState({
-    elapsedTime: null,
+    duration: null,
     cost: null,
     scooter: null,
     userId: user,
@@ -31,7 +31,7 @@ const Timer = ({ selectedScooter }) => {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
 
-  const getElapsedTime = () => ({ minutes, seconds });
+  const getDuration = () => ({ minutes, seconds });
 
   // this is where the ride cost is calculated
   const calculateRideCost = () => (minutes * 0.5).toFixed(2);// multiplies the minutes * 50 cents. the toFixed part claculates the ride to 2 decimal places
@@ -39,7 +39,7 @@ const Timer = ({ selectedScooter }) => {
   // method to start and stop timer
   const startAndStop = () => {
     if (isRunning) {
-      setRide({ ...ride, elapsedTime: getElapsedTime(), scooter: selectedScooter }); // this updates the ride with elapsed time ... is the spread operator and the scooter
+      setRide({ ...ride, duration: getDuration(), scooter: selectedScooter }); // this updates the ride with elapsed time ... is the spread operator and the scooter
     }
     setIsrunning(!isRunning);
   };
@@ -48,10 +48,10 @@ const Timer = ({ selectedScooter }) => {
     if (isRunning) {
       setIsrunning(false);
     }
-    const elapsedTime = getElapsedTime();
-    const rideCost = calculateRideCost(elapsedTime.minutes + elapsedTime.seconds / 60);
+    const duration = getDuration();
+    const rideCost = calculateRideCost(duration.minutes + duration.seconds / 60);
     setRide({
-      ...ride, elapsedTime, cost: rideCost, scooter: selectedScooter,
+      ...ride, duration, cost: rideCost, scooter: selectedScooter,
     });
   };
 
